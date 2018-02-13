@@ -11,6 +11,12 @@ Seidr is a framework agnostic package for easy XML data extraction.
 
 It is inspired by [orchestral/parser](https://github.com/orchestral/parser).
 
+### Package Naming
+
+Seidr (pronounced “SAY-der;” Old Norse seiðr, “cord, string, snare”) is a form of pre-Christian Norse magic and shamanism concerned with discerning and altering the course of destiny by re-weaving part of destiny’s web. [[Norse mythology concepts](https://norse-mythology.org/concepts/seidr/)]
+
+The name was chosen because the intent of the package is to feel a bit "magical" and the purpose is to re-weave the XML data into an array.
+
 ## Install
 
 Via Composer
