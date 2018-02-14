@@ -305,6 +305,7 @@ class RuleTest extends TestCase
     //region ========== Implements: ArrayAccess ==========
     /**
      * @test that isset with array access returns the correct value.
+     * @covers NorseBlue\Seidr\Rule::offsetExists
      */
     public function isset_with_array_access_returns_correct_value()
     {
@@ -319,6 +320,7 @@ class RuleTest extends TestCase
 
     /**
      * @test that an attribute can be retrieved using array access.
+     * @covers NorseBlue\Seidr\Rule::offsetGet
      */
     public function attribute_can_be_retrieved_with_array_access()
     {
@@ -339,6 +341,7 @@ class RuleTest extends TestCase
 
     /**
      * @test that an attribute can be set using array access.
+     * @covers NorseBlue\Seidr\Rule::offsetSet
      */
     public function attribute_can_be_set_with_array_access()
     {
@@ -351,6 +354,7 @@ class RuleTest extends TestCase
 
     /**
      * @test that an attribute can be unset (reverts to the default value) using array access.
+     * @covers NorseBlue\Seidr\Rule::offsetUnset
      */
     public function attribute_can_be_unset_with_array_access()
     {
@@ -365,6 +369,7 @@ class RuleTest extends TestCase
     //region ========== Implements: JsonSerializable ==========
     /**
      * @test that the rule can be serialized into JSON.
+     * @covers NorseBlue\Seidr\Rule::jsonSerialize
      */
     public function rule_can_be_serialized_into_json()
     {

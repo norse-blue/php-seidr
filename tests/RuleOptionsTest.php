@@ -193,6 +193,7 @@ class RuleOptionsTest extends TestCase
     //region ========== Implements: ArrayAccess ==========
     /**
      * @test that isset with array access returns the correct value.
+     * @covers NorseBlue\Seidr\RuleOptions::offsetExists
      */
     public function isset_with_array_access_returns_correct_value()
     {
@@ -205,6 +206,7 @@ class RuleOptionsTest extends TestCase
 
     /**
      * @test that an attribute can be retrieved using array access.
+     * @covers NorseBlue\Seidr\RuleOptions::offsetGet
      */
     public function attribute_can_be_retrieved_with_array_access()
     {
@@ -216,6 +218,7 @@ class RuleOptionsTest extends TestCase
 
     /**
      * @test that an attribute can be set using array access.
+     * @covers NorseBlue\Seidr\RuleOptions::offsetSet
      */
     public function attribute_can_be_set_with_array_access()
     {
@@ -228,6 +231,7 @@ class RuleOptionsTest extends TestCase
 
     /**
      * @test that an attribute can be unset (reverts to the default value) using array access.
+     * @covers NorseBlue\Seidr\RuleOptions::offsetUnset
      */
     public function attribute_can_be_unset_with_array_access()
     {
@@ -242,6 +246,7 @@ class RuleOptionsTest extends TestCase
     //region ========== Implements: JsonSerializable ==========
     /**
      * @test that the options can be serialized into JSON.
+     * @covers NorseBlue\Seidr\RuleOptions::jsonSerialize
      */
     public function options_can_be_serialized_into_json()
     {
