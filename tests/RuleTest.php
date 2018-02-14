@@ -11,6 +11,7 @@ namespace NorseBlue\Seidr\Tests;
 
 use InvalidArgumentException;
 use NorseBlue\Seidr\Rule;
+use NorseBlue\Seidr\RuleOptions;
 use NorseBlue\Seidr\Rules\DefaultRule;
 use PHPUnit\Framework\TestCase;
 
@@ -403,6 +404,23 @@ class RuleTest extends TestCase
                 'omit' => true,
             ],
         ], $rule->toDefinition());
+    }
+    //endregion
+
+    //region ========== Other Tests ==========
+    /**
+     * @test that the rule options object is parsed instead of used directly.
+     * @coversNothing
+     */
+    public function rule_options_object_is_parsed_instead_of_used_directly()
+    {
+        $rule_options = new RuleOptions;
+        $rule = Rule::parse([
+            'options' => $rule_options,
+        ]);
+
+        $this->assertNotSame($rule_options, $rule->options);
+        $this->assertEquals($rule_options, $rule->options);
     }
     //endregion
 }

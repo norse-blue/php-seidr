@@ -371,8 +371,8 @@ class RuleSetTest extends TestCase
     public function count_returns_number_of_items_in_result_set()
     {
         $rule_set = new RuleSet([
-            'foo' => new DefaultRule,
-            'bar' => new DefaultRule,
+            'foo' => new Rule,
+            'bar' => new Rule,
         ]);
 
         $this->assertEquals(2, $rule_set->count());
@@ -387,8 +387,8 @@ class RuleSetTest extends TestCase
     public function rule_set_can_be_iterated_over()
     {
         $rule_set = new RuleSet([
-            'foo' => new DefaultRule,
-            'bar' => new DefaultRule,
+            'foo' => new Rule,
+            'bar' => new Rule,
         ]);
 
         $loops = 0;
@@ -411,8 +411,8 @@ class RuleSetTest extends TestCase
     public function rule_set_can_be_serialized_into_json()
     {
         $rule_set = new RuleSet([
-            'foo' => new DefaultRule,
-            'bar' => new DefaultRule,
+            'foo' => new Rule,
+            'bar' => new Rule,
         ]);
 
         $json = json_encode($rule_set);
@@ -445,8 +445,8 @@ class RuleSetTest extends TestCase
         $modifier = function () {
         };
         $rule_set = new RuleSet([
-            'foo' => new DefaultRule,
-            'bar' => new DefaultRule,
+            'foo' => new Rule,
+            'bar' => new Rule,
         ]);
 
         $this->assertEquals([
@@ -469,6 +469,23 @@ class RuleSetTest extends TestCase
                 ],
             ],
         ], $rule_set->toDefinition());
+    }
+    //endregion
+
+    //region ========== Other Tests ==========
+    /**
+     * @test that the rule object is parsed instead of used directly.
+     * @coversNothing
+     */
+    public function rule_object_is_parsed_instead_of_used_directly()
+    {
+        $rule = new Rule;
+        $rule_set = new RuleSet([
+            'foo' => $rule,
+        ]);
+
+        $this->assertNotSame($rule, $rule_set->rules['foo']);
+        $this->assertEquals($rule, $rule_set->rules['foo']);
     }
     //endregion
 }
