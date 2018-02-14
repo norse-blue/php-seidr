@@ -12,6 +12,12 @@ namespace NorseBlue\Seidr\RuleSets;
 use NorseBlue\Seidr\Contracts\RuleSetDefinition;
 use NorseBlue\Seidr\Rule;
 
+/**
+ * Class EmptyRuleSet
+ *
+ * @package NorseBlue\Seidr\RuleSets
+ * @codeCoverageIgnore
+ */
 class EmptyRuleSet implements RuleSetDefinition
 {
     //region ========== Methods ==========

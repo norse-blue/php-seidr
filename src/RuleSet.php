@@ -23,7 +23,7 @@ use NorseBlue\Sekkr\Arr;
  * Class RuleSet
  *
  * @package NorseBlue\Seidr
- * @property Arr[Rule] $rules
+ * @property Arr $rules
  */
 class RuleSet implements ArrayAccess, Countable, IteratorAggregate, JsonSerializable, RuleSetDefinition
 {
@@ -31,7 +31,7 @@ class RuleSet implements ArrayAccess, Countable, IteratorAggregate, JsonSerializ
 
     //region ========== Properties ==========
     /**
-     * @var Arr[Rule] The rules that this RuleSet holds.
+     * @var Arr The rules that this RuleSet holds.
      */
     protected $rules;
     //endregion
@@ -93,7 +93,7 @@ class RuleSet implements ArrayAccess, Countable, IteratorAggregate, JsonSerializ
     /**
      * Attribute $rules accessor.
      *
-     * @return Arr[Rule]
+     * @return Arr
      */
     protected function getRulesAttribute(): Arr
     {

@@ -9,9 +9,14 @@
 
 namespace NorseBlue\Seidr\RuleOptions;
 
-use NorseBlue\Seidr\Rule;
 use NorseBlue\Seidr\Contracts\RuleOptionsDefinition;
 
+/**
+ * Class DefaultRuleOptions
+ *
+ * @package NorseBlue\Seidr\RuleOptions
+ * @codeCoverageIgnore
+ */
 class DefaultRuleOptions implements RuleOptionsDefinition
 {
     //region ========== Methods ==========
