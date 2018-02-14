@@ -20,6 +20,9 @@ use Throwable;
 class FileNotFoundException extends RuntimeException
 {
     //region ========== Properties ==========
+    /**
+     * @var string The path of the file that was not found.
+     */
     protected $filePath;
     //endregion
 

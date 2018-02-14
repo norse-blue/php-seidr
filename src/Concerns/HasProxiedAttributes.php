@@ -112,7 +112,9 @@ trait HasProxiedAttributes
                 $attribute
             ), $attribute);
         } catch (ReflectionException $e) {
+            // We filter out only the ReflectionException to throw an AttributeAccessException instead.
         }
+
         throw new AttributeAccessException(
             sprintf('Undefined property: %s::$%s', static::class, $attribute),
             $attribute

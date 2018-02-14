@@ -20,16 +20,18 @@ use Throwable;
 class AttributeAccessException extends RuntimeException
 {
     //region ========== Properties ==========
+    /**
+     * @var string The attribute that could not be accessed.
+     */
     protected $attribute;
     //endregion
 
-    //region ========== Constructor ==========
     /**
-     * FileNotFoundException constructor.
+     * AttributeAccessException constructor.
      *
      * @param string         $message
-     * @param int            $code
      * @param string         $attribute
+     * @param int            $code
      * @param Throwable|null $previous
      */
     public function __construct(string $message = "", string $attribute = "", int $code = 0, Throwable $previous = null)
