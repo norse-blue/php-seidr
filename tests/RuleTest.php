@@ -31,7 +31,7 @@ class RuleTest extends TestCase
     {
         $rule = new Rule;
 
-        $this->assertEquals(Rule::DEFAULT['seek'], $rule->seek);
+        $this->assertEquals(Rule::DEFAULT['maps'], $rule->maps);
         $this->assertEquals(Rule::DEFAULT['default'], $rule->default);
         $this->assertEquals(Rule::DEFAULT['modifier'], $rule->modifier);
         $this->assertEquals(Rule::DEFAULT['options'], $rule->options->toDefinition());
@@ -46,7 +46,7 @@ class RuleTest extends TestCase
         $modifier = function() { };
         $rule = new Rule('foo', 'bar', $modifier, ['ignore_case' => true]);
 
-        $this->assertEquals('foo', $rule->seek);
+        $this->assertEquals('foo', $rule->maps);
         $this->assertEquals('bar', $rule->default);
         $this->assertSame($modifier, $rule->modifier);
         $this->assertEquals([
@@ -65,7 +65,7 @@ class RuleTest extends TestCase
     {
         $modifier = function() { };
         $rule = Rule::parse([
-            'seek' => 'foo',
+            'maps' => 'foo',
             'default' => 'bar',
             'modifier' => $modifier,
             'options' => [
@@ -75,7 +75,7 @@ class RuleTest extends TestCase
         ]);
 
         $this->assertInstanceOf(Rule::class, $rule);
-        $this->assertEquals('foo', $rule->seek);
+        $this->assertEquals('foo', $rule->maps);
         $this->assertEquals('bar', $rule->default);
         $this->assertSame($modifier, $rule->modifier);
         $this->assertEquals([
@@ -93,7 +93,7 @@ class RuleTest extends TestCase
         $rule = Rule::parse(new DefaultRule);
 
         $this->assertInstanceOf(Rule::class, $rule);
-        $this->assertEquals('', $rule->seek);
+        $this->assertEquals('', $rule->maps);
         $this->assertNull($rule->default);
         $this->assertNull($rule->modifier);
         $this->assertEquals([
@@ -116,14 +116,14 @@ class RuleTest extends TestCase
 
     //region ========== Accessors ==========
     /**
-     * @test that the attribute seek can be retrieved.
-     * @covers NorseBlue\Seidr\Rule::getSeekAttribute
+     * @test that the attribute maps can be retrieved.
+     * @covers NorseBlue\Seidr\Rule::getmapsAttribute
      */
-    public function attribute_seek_can_be_retrieved()
+    public function attribute_maps_can_be_retrieved()
     {
         $rule = new Rule('foo');
 
-        $this->assertEquals('foo', $rule->seek);
+        $this->assertEquals('foo', $rule->maps);
     }
 
     /**
@@ -169,16 +169,16 @@ class RuleTest extends TestCase
 
     //region ========== Mutators ==========
     /**
-     * @test that the attribute seek can be set.
-     * @covers NorseBlue\Seidr\Rule::setSeekAttribute
+     * @test that the attribute maps can be set.
+     * @covers NorseBlue\Seidr\Rule::setmapsAttribute
      */
-    public function attribute_seek_can_be_set()
+    public function attribute_maps_can_be_set()
     {
         $rule = new Rule('');
 
-        $rule->seek = 'foo';
+        $rule->maps = 'foo';
 
-        $this->assertEquals('foo', $rule->seek);
+        $this->assertEquals('foo', $rule->maps);
     }
 
     /**
@@ -246,7 +246,7 @@ class RuleTest extends TestCase
         ]);
 
         $rule->load([
-            'seek' => 'foo',
+            'maps' => 'foo',
             'default' => 'bar',
             'modifier' => $modifier,
             'options' => [
@@ -256,7 +256,7 @@ class RuleTest extends TestCase
         ]);
 
         $this->assertInstanceOf(Rule::class, $rule);
-        $this->assertEquals('foo', $rule->seek);
+        $this->assertEquals('foo', $rule->maps);
         $this->assertEquals('bar', $rule->default);
         $this->assertSame($modifier, $rule->modifier);
         $this->assertEquals([
@@ -280,7 +280,7 @@ class RuleTest extends TestCase
         $rule->load(new DefaultRule);
 
         $this->assertInstanceOf(Rule::class, $rule);
-        $this->assertEquals('', $rule->seek);
+        $this->assertEquals('', $rule->maps);
         $this->assertNull($rule->default);
         $this->assertNull($rule->modifier);
         $this->assertEquals([
@@ -312,7 +312,7 @@ class RuleTest extends TestCase
     {
         $rule = new Rule;
 
-        $this->assertTrue(isset($rule['seek']));
+        $this->assertTrue(isset($rule['maps']));
         $this->assertTrue(isset($rule['default']));
         $this->assertTrue(isset($rule['modifier']));
         $this->assertTrue(isset($rule['options']));
@@ -331,7 +331,7 @@ class RuleTest extends TestCase
             'omit' => true,
         ]);
 
-        $this->assertEquals('foo', $rule['seek']);
+        $this->assertEquals('foo', $rule['maps']);
         $this->assertEquals('bar', $rule['default']);
         $this->assertSame($modifier, $rule['modifier']);
         $this->assertEquals([
@@ -348,9 +348,9 @@ class RuleTest extends TestCase
     {
         $rule = new Rule;
 
-        $rule['seek'] = 'foo';
+        $rule['maps'] = 'foo';
 
-        $this->assertEquals('foo', $rule->seek);
+        $this->assertEquals('foo', $rule->maps);
     }
 
     /**
@@ -361,9 +361,9 @@ class RuleTest extends TestCase
     {
         $rule = new Rule('foo');
 
-        unset($rule['seek']);
+        unset($rule['maps']);
 
-        $this->assertEquals('', $rule->seek);
+        $this->assertEquals('', $rule->maps);
     }
     //endregion
 
@@ -378,7 +378,7 @@ class RuleTest extends TestCase
 
         $json = json_encode($rule);
 
-        $this->assertEquals('{"seek":"","default":null,"modifier":null,"options":{"ignore_case":false,"omit":false}}', $json);
+        $this->assertEquals('{"maps":"","default":null,"modifier":null,"options":{"ignore_case":false,"omit":false}}', $json);
     }
     //endregion
 
@@ -396,7 +396,7 @@ class RuleTest extends TestCase
         ]);
 
         $this->assertEquals([
-            'seek' => 'foo',
+            'maps' => 'foo',
             'default' => 'bar',
             'modifier' => $modifier,
             'options' => [

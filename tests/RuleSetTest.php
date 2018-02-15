@@ -48,14 +48,14 @@ class RuleSetTest extends TestCase
         };
         $rule_set = new RuleSet([
             'simple_key' => [
-                'seek' => 'path.to.seek',
+                'maps' => 'path.to.maps',
                 'default' => 'not found',
                 'options' => [
                     'ignore_case' => true,
                 ],
             ],
             'composite.key' => [
-                'seek' => 'other.path.to.seek',
+                'maps' => 'other.path.to.maps',
                 'modifier' => $modifier,
                 'options' => [
                     'omit' => true,
@@ -74,7 +74,7 @@ class RuleSetTest extends TestCase
             $this->assertInstanceOf(Rule::class, $rule);
             switch ($key) {
                 case 'simple_key':
-                    $this->assertEquals('path.to.seek', $rule->seek);
+                    $this->assertEquals('path.to.maps', $rule->maps);
                     $this->assertEquals('not found', $rule->default);
                     $this->assertNull($rule->modifier);
                     $this->assertTrue($rule->options['ignore_case']);
@@ -82,7 +82,7 @@ class RuleSetTest extends TestCase
                     $this->assertSame($rule, $rule_set[$key]);
                     break;
                 case 'composite.key':
-                    $this->assertEquals('other.path.to.seek', $rule->seek);
+                    $this->assertEquals('other.path.to.maps', $rule->maps);
                     $this->assertNull($rule->default);
                     $this->assertEquals($modifier, $rule->modifier);
                     $this->assertFalse($rule->options['ignore_case']);
@@ -105,7 +105,7 @@ class RuleSetTest extends TestCase
         };
         $rule_set = RuleSet::parse([
             [
-                'seek' => 'foo',
+                'maps' => 'foo',
                 'default' => 'bar',
                 'modifier' => $modifier,
                 'options' => [
@@ -114,7 +114,7 @@ class RuleSetTest extends TestCase
                 ],
             ],
             [
-                'seek' => 'baz.qux',
+                'maps' => 'baz.qux',
                 'default' => 'corge',
                 'modifier' => $modifier,
                 'options' => [
@@ -127,7 +127,7 @@ class RuleSetTest extends TestCase
         $this->assertInstanceOf(RuleSet::class, $rule_set);
         $this->assertEquals([
             [
-                'seek' => 'foo',
+                'maps' => 'foo',
                 'default' => 'bar',
                 'modifier' => $modifier,
                 'options' => [
@@ -136,7 +136,7 @@ class RuleSetTest extends TestCase
                 ],
             ],
             [
-                'seek' => 'baz.qux',
+                'maps' => 'baz.qux',
                 'default' => 'corge',
                 'modifier' => $modifier,
                 'options' => [
@@ -176,7 +176,7 @@ class RuleSetTest extends TestCase
      * @test   that the attribute rules can be retrieved.
      * @covers NorseBlue\Seidr\RuleSet::getRulesAttribute
      */
-    public function attribute_seek_can_be_retrieved()
+    public function attribute_maps_can_be_retrieved()
     {
         $rule_set = new RuleSet;
 
@@ -190,11 +190,11 @@ class RuleSetTest extends TestCase
      * @test   that the attribute rules can be set.
      * @covers NorseBlue\Seidr\RuleSet::setRulesAttribute
      */
-    public function attribute_seek_can_be_set()
+    public function attribute_maps_can_be_set()
     {
         $rule_set = new RuleSet([
             'simple_key' => [
-                'seek' => 'path.to.seek',
+                'maps' => 'path.to.maps',
                 'default' => 'not found',
                 'options' => [
                     'ignore-case' => true,
@@ -223,7 +223,7 @@ class RuleSetTest extends TestCase
 
         $rule_set->load([
             [
-                'seek' => 'foo',
+                'maps' => 'foo',
                 'default' => 'bar',
                 'modifier' => $modifier,
                 'options' => [
@@ -232,7 +232,7 @@ class RuleSetTest extends TestCase
                 ],
             ],
             [
-                'seek' => 'baz.qux',
+                'maps' => 'baz.qux',
                 'default' => 'corge',
                 'modifier' => $modifier,
                 'options' => [
@@ -245,7 +245,7 @@ class RuleSetTest extends TestCase
         $this->assertInstanceOf(RuleSet::class, $rule_set);
         $this->assertEquals([
             [
-                'seek' => 'foo',
+                'maps' => 'foo',
                 'default' => 'bar',
                 'modifier' => $modifier,
                 'options' => [
@@ -254,7 +254,7 @@ class RuleSetTest extends TestCase
                 ],
             ],
             [
-                'seek' => 'baz.qux',
+                'maps' => 'baz.qux',
                 'default' => 'corge',
                 'modifier' => $modifier,
                 'options' => [
@@ -417,7 +417,7 @@ class RuleSetTest extends TestCase
 
         $json = json_encode($rule_set);
 
-        $this->assertEquals('{"foo":{"seek":"","default":null,"modifier":null,"options":{"ignore_case":false,"omit":false}},"bar":{"seek":"","default":null,"modifier":null,"options":{"ignore_case":false,"omit":false}}}',
+        $this->assertEquals('{"foo":{"maps":"","default":null,"modifier":null,"options":{"ignore_case":false,"omit":false}},"bar":{"maps":"","default":null,"modifier":null,"options":{"ignore_case":false,"omit":false}}}',
             $json);
     }
     //endregion
@@ -451,7 +451,7 @@ class RuleSetTest extends TestCase
 
         $this->assertEquals([
             'foo' => [
-                'seek' => '',
+                'maps' => '',
                 'default' => null,
                 'modifier' => null,
                 'options' => [
@@ -460,7 +460,7 @@ class RuleSetTest extends TestCase
                 ],
             ],
             'bar' => [
-                'seek' => '',
+                'maps' => '',
                 'default' => null,
                 'modifier' => null,
                 'options' => [

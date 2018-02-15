@@ -24,7 +24,7 @@ use NorseBlue\Sekkr\Arr;
  * @property mixed       $default
  * @property callable    $modifier
  * @property RuleOptions $options
- * @property string      $seek
+ * @property string      $maps
  */
 class Rule implements ArrayAccess, JsonSerializable, RuleDefinition
 {
@@ -47,27 +47,27 @@ class Rule implements ArrayAccess, JsonSerializable, RuleDefinition
     protected $options;
 
     /**
-     * @var string The rule's seek value (the path to the data in the XML content).
+     * @var string The rule's maps value (the path to the data in the XML content).
      */
-    protected $seek;
+    protected $maps;
     //endregion
 
     //region ========== Constructor ==========
     /**
      * Rule constructor.
      *
-     * @param string                      $seek
+     * @param string                      $maps
      * @param mixed                       $default
      * @param callable|null               $modifier
      * @param array|RuleOptionsDefinition $options
      */
     public function __construct(
-        string $seek = self::DEFAULT['seek'],
+        string $maps = self::DEFAULT['maps'],
         $default = self::DEFAULT['default'],
         ?callable $modifier = self::DEFAULT['modifier'],
         $options = self::DEFAULT['options']
     ) {
-        $this->seek = $seek;
+        $this->maps = $maps;
         $this->default = $default;
         $this->modifier = $modifier;
         $this->options = RuleOptions::parse($options);
@@ -147,13 +147,13 @@ class Rule implements ArrayAccess, JsonSerializable, RuleDefinition
     }
 
     /**
-     * Attribute $seek accessor.
+     * Attribute $maps accessor.
      *
      * @return string
      */
-    protected function getSeekAttribute(): string
+    protected function getmapsAttribute(): string
     {
-        return $this->seek;
+        return $this->maps;
     }
     //endregion
 
@@ -189,13 +189,13 @@ class Rule implements ArrayAccess, JsonSerializable, RuleDefinition
     }
 
     /**
-     * Attribute $seek mutator.
+     * Attribute $maps mutator.
      *
      * @param string $value
      */
-    protected function setSeekAttribute(string $value): void
+    protected function setmapsAttribute(string $value): void
     {
-        $this->seek = $value;
+        $this->maps = $value;
     }
     //endregion
 
@@ -209,7 +209,7 @@ class Rule implements ArrayAccess, JsonSerializable, RuleDefinition
     {
         $definition = static::convertToArr($definition);
 
-        $definition->has('seek') && $this->setSeekAttribute($definition['seek']);
+        $definition->has('maps') && $this->setmapsAttribute($definition['maps']);
         $definition->has('default') && $this->setDefaultAttribute($definition['default']);
         $definition->has('modifier') && $this->setModifierAttribute($definition['modifier']);
         $definition->has('options') && $this->setOptionsAttribute(RuleOptions::parse($definition['options']));
@@ -280,7 +280,7 @@ class Rule implements ArrayAccess, JsonSerializable, RuleDefinition
     public function toDefinition(): array
     {
         return [
-            'seek' => $this->seek,
+            'maps' => $this->maps,
             'default' => $this->default,
             'modifier' => $this->modifier,
             'options' => $this->options->toDefinition(),

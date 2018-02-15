@@ -21,7 +21,7 @@ interface RuleDefinition
      * @const array The rule's default definition.
      */
     public const DEFAULT = [
-        'seek' => '',
+        'maps' => '',
         'default' => null,
         'modifier' => null,
         'options' => RuleOptionsDefinition::DEFAULT,
