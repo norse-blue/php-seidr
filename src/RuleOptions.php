@@ -155,6 +155,32 @@ class RuleOptions implements ArrayAccess, JsonSerializable, RuleOptionsDefinitio
         $definition->has('ignore_case') && $this->setIgnoreCaseAttribute($definition['ignore_case']);
         $definition->has('omit') && $this->setOmitAttribute($definition['omit']);
     }
+
+    /**
+     * Merges the rule options with the given definition.
+     * Note: It does not replace the items in the current rule options, it compiles a new rule options.
+     *
+     * @param array|RuleOptionsDefinition $definition
+     *
+     * @return RuleOptions
+     */
+    public function merge($definition): RuleOptions
+    {
+        if ($definition instanceof RuleOptionsDefinition) {
+            $definition = $definition->toDefinition();
+        }
+
+        if (!is_array($definition)) {
+            throw new InvalidArgumentException(sprintf(
+                'Parameter $definition should be of type \'array|RuleOptionsDefinition\', but \'%s\' given.',
+                gettype($definition)
+            ));
+        }
+
+        $merged = array_merge($this->toDefinition(), $definition);
+
+        return RuleOptions::parse($merged);
+    }
     //endregion
 
     //region ========== Implements: ArrayAccess ==========

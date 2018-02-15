@@ -128,6 +128,32 @@ class RuleSet implements ArrayAccess, Countable, IteratorAggregate, JsonSerializ
 
         $this->setRulesAttribute($definition->all());
     }
+
+    /**
+     * Merges the rule set with the given definition.
+     * Note: It does not replace the items in the current rule set, it compiles a new rule set.
+     *
+     * @param array|RuleSetDefinition $definition
+     *
+     * @return RuleSet
+     */
+    public function merge($definition): RuleSet
+    {
+        if ($definition instanceof RuleSetDefinition) {
+            $definition = $definition->toDefinition();
+        }
+
+        if (!is_array($definition)) {
+            throw new InvalidArgumentException(sprintf(
+                'Parameter $definition should be of type \'array|RuleSetDefinition\', but \'%s\' given.',
+                gettype($definition)
+            ));
+        }
+
+        $merged = array_merge($this->toDefinition(), $definition);
+
+        return RuleSet::parse($merged);
+    }
     //endregion
 
     //region ========== Implements: ArrayAccess ==========
